@@ -1,0 +1,5 @@
+D:\Admin\Desktop\SMBLibrary-master\Utilities\bin\Debug\Utilities.dll
+D:\Admin\Desktop\SMBLibrary-master\Utilities\bin\Debug\Utilities.pdb
+D:\Admin\Desktop\SMBLibrary-master\Utilities\obj\Debug\Utilities.VS2005.csprojResolveAssemblyReference.cache
+D:\Admin\Desktop\SMBLibrary-master\Utilities\obj\Debug\Utilities.dll
+D:\Admin\Desktop\SMBLibrary-master\Utilities\obj\Debug\Utilities.pdb

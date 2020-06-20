@@ -1,0 +1,9 @@
+D:\Admin\Desktop\SMBLibrary-master\SMBLibrary.Win32\bin\Debug\SMBLibrary.Win32.dll
+D:\Admin\Desktop\SMBLibrary-master\SMBLibrary.Win32\bin\Debug\SMBLibrary.Win32.pdb
+D:\Admin\Desktop\SMBLibrary-master\SMBLibrary.Win32\bin\Debug\SMBLibrary.dll
+D:\Admin\Desktop\SMBLibrary-master\SMBLibrary.Win32\bin\Debug\Utilities.dll
+D:\Admin\Desktop\SMBLibrary-master\SMBLibrary.Win32\bin\Debug\SMBLibrary.pdb
+D:\Admin\Desktop\SMBLibrary-master\SMBLibrary.Win32\bin\Debug\Utilities.pdb
+D:\Admin\Desktop\SMBLibrary-master\SMBLibrary.Win32\obj\Debug\SMBLibrary.Win32.VS2005.csprojResolveAssemblyReference.cache
+D:\Admin\Desktop\SMBLibrary-master\SMBLibrary.Win32\obj\Debug\SMBLibrary.Win32.dll
+D:\Admin\Desktop\SMBLibrary-master\SMBLibrary.Win32\obj\Debug\SMBLibrary.Win32.pdb

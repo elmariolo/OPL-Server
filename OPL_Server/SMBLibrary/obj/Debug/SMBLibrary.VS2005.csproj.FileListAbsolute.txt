@@ -1,0 +1,7 @@
+D:\Admin\Desktop\SMBLibrary-master\SMBLibrary\bin\Debug\SMBLibrary.dll
+D:\Admin\Desktop\SMBLibrary-master\SMBLibrary\bin\Debug\SMBLibrary.pdb
+D:\Admin\Desktop\SMBLibrary-master\SMBLibrary\bin\Debug\Utilities.dll
+D:\Admin\Desktop\SMBLibrary-master\SMBLibrary\bin\Debug\Utilities.pdb
+D:\Admin\Desktop\SMBLibrary-master\SMBLibrary\obj\Debug\SMBLibrary.VS2005.csprojResolveAssemblyReference.cache
+D:\Admin\Desktop\SMBLibrary-master\SMBLibrary\obj\Debug\SMBLibrary.dll
+D:\Admin\Desktop\SMBLibrary-master\SMBLibrary\obj\Debug\SMBLibrary.pdb

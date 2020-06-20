@@ -1,0 +1,14 @@
+d:\visual studio 2012\Projects\PS2Server\PS2Server\bin\Debug\PS2Server.exe
+d:\visual studio 2012\Projects\PS2Server\PS2Server\bin\Debug\PS2Server.pdb
+d:\visual studio 2012\Projects\PS2Server\PS2Server\bin\Debug\SMBLibrary.dll
+d:\visual studio 2012\Projects\PS2Server\PS2Server\bin\Debug\SMBLibrary.Win32.dll
+d:\visual studio 2012\Projects\PS2Server\PS2Server\bin\Debug\Utilities.dll
+d:\visual studio 2012\Projects\PS2Server\PS2Server\bin\Debug\SMBLibrary.pdb
+d:\visual studio 2012\Projects\PS2Server\PS2Server\bin\Debug\SMBLibrary.Win32.pdb
+d:\visual studio 2012\Projects\PS2Server\PS2Server\bin\Debug\Utilities.pdb
+d:\visual studio 2012\Projects\PS2Server\PS2Server\obj\Debug\PS2Server.csprojResolveAssemblyReference.cache
+d:\visual studio 2012\Projects\PS2Server\PS2Server\obj\Debug\PS2Server.Properties.Resources.resources
+d:\visual studio 2012\Projects\PS2Server\PS2Server\obj\Debug\PS2Server.csproj.GenerateResource.Cache
+d:\visual studio 2012\Projects\PS2Server\PS2Server\obj\Debug\PS2Server.exe
+d:\visual studio 2012\Projects\PS2Server\PS2Server\obj\Debug\PS2Server.pdb
+d:\visual studio 2012\Projects\PS2Server\PS2Server\obj\Debug\PS2Server.Form1.resources
