@@ -150,7 +150,7 @@
             this.tsbLogInfo.CheckOnClick = true;
             this.tsbLogInfo.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tsbLogInfo.Name = "tsbLogInfo";
-            this.tsbLogInfo.Size = new System.Drawing.Size(152, 22);
+            this.tsbLogInfo.Size = new System.Drawing.Size(137, 22);
             this.tsbLogInfo.Text = "Information";
             this.tsbLogInfo.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
             // 
@@ -160,7 +160,7 @@
             this.tsbLogWarn.CheckOnClick = true;
             this.tsbLogWarn.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tsbLogWarn.Name = "tsbLogWarn";
-            this.tsbLogWarn.Size = new System.Drawing.Size(152, 22);
+            this.tsbLogWarn.Size = new System.Drawing.Size(137, 22);
             this.tsbLogWarn.Text = "Warning";
             this.tsbLogWarn.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
             // 
@@ -170,7 +170,7 @@
             this.tsbLogError.CheckOnClick = true;
             this.tsbLogError.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tsbLogError.Name = "tsbLogError";
-            this.tsbLogError.Size = new System.Drawing.Size(152, 22);
+            this.tsbLogError.Size = new System.Drawing.Size(137, 22);
             this.tsbLogError.Text = "Error";
             this.tsbLogError.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
             // 
@@ -180,7 +180,7 @@
             this.tsbLogCritical.CheckOnClick = true;
             this.tsbLogCritical.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tsbLogCritical.Name = "tsbLogCritical";
-            this.tsbLogCritical.Size = new System.Drawing.Size(152, 22);
+            this.tsbLogCritical.Size = new System.Drawing.Size(137, 22);
             this.tsbLogCritical.Text = "Critical";
             this.tsbLogCritical.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
             // 
@@ -190,7 +190,7 @@
             this.tsbLogTrace.CheckOnClick = true;
             this.tsbLogTrace.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tsbLogTrace.Name = "tsbLogTrace";
-            this.tsbLogTrace.Size = new System.Drawing.Size(152, 22);
+            this.tsbLogTrace.Size = new System.Drawing.Size(137, 22);
             this.tsbLogTrace.Text = "Trace";
             this.tsbLogTrace.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
             // 
@@ -198,7 +198,7 @@
             // 
             this.tsbLogDebug.CheckOnClick = true;
             this.tsbLogDebug.Name = "tsbLogDebug";
-            this.tsbLogDebug.Size = new System.Drawing.Size(152, 22);
+            this.tsbLogDebug.Size = new System.Drawing.Size(137, 22);
             this.tsbLogDebug.Text = "Debug";
             this.tsbLogDebug.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
             // 
@@ -206,7 +206,7 @@
             // 
             this.tsbLogVerbose.CheckOnClick = true;
             this.tsbLogVerbose.Name = "tsbLogVerbose";
-            this.tsbLogVerbose.Size = new System.Drawing.Size(152, 22);
+            this.tsbLogVerbose.Size = new System.Drawing.Size(137, 22);
             this.tsbLogVerbose.Text = "Verbose";
             this.tsbLogVerbose.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
             // 

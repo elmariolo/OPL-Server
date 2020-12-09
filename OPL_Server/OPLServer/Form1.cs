@@ -64,6 +64,24 @@ namespace OPLServer
 
             m_logWriter = new LogWriter();
             if (tsbEnableLog.Checked) m_server.LogEntryAdded += m_server_LogEntryAdded;
+
+            string[] args = Environment.GetCommandLineArgs();
+
+            foreach (string arg in args)
+            {
+                if (arg.ToUpper() == "/NOLOG")
+                {
+                    addLogList(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "Information", "Commandline", "/NOLOG");
+                    tsbEnableLog.Checked = false;
+                }
+
+                if (arg.ToUpper() == "/START")
+                {
+                    addLogList(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "Information", "Commandline", "/START");
+                    tsbServerState.Checked = true;
+                    //tsbServerState_CheckedChanged(null, null);
+                }                
+            }
         }
 
         void loadSettings()
