@@ -5,13 +5,10 @@
  * either version 3 of the License, or (at your option) any later version.
  */
 using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
 using SMBLibrary.NetBios;
-using Utilities;
 
 namespace SMBLibrary.Server
 {

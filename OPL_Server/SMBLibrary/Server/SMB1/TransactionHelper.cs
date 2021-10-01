@@ -8,8 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using SMBLibrary.SMB1;
-using SMBLibrary.RPC;
-using SMBLibrary.Services;
 using Utilities;
 
 namespace SMBLibrary.Server.SMB1

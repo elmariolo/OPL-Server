@@ -6,9 +6,7 @@
  */
 using System;
 using System.Collections.Generic;
-using System.IO;
 using SMBLibrary.SMB2;
-using Utilities;
 
 namespace SMBLibrary.Server
 {

@@ -6,7 +6,6 @@
  */
 using System;
 using System.Collections.Generic;
-using System.IO;
 using SMBLibrary.SMB1;
 using Utilities;
 

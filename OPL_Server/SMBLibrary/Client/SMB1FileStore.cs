@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using SMBLibrary.SMB1;
-using Utilities;
 
 namespace SMBLibrary.Client
 {

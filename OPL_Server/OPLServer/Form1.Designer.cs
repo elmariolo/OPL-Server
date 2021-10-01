@@ -23,17 +23,17 @@
         #region Código generado por el Diseñador de Windows Forms
 
         /// <summary>
-        /// Método necesario para admitir el Diseñador. No se puede modificar
-        /// el contenido del método con el editor de código.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbEnableLog = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -60,15 +60,12 @@
             // 
             // listView1
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4});
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.columnHeader1, this.columnHeader2, this.columnHeader3, this.columnHeader4 });
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Location = new System.Drawing.Point(0, 25);
+            this.listView1.Location = new System.Drawing.Point(0, 32);
+            this.listView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(890, 307);
+            this.listView1.Size = new System.Drawing.Size(1335, 479);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -91,23 +88,11 @@
             // 
             // toolStrip1
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbEnableLog,
-            this.toolStripSeparator2,
-            this.tsbLogFilter,
-            this.toolStripSeparator1,
-            this.tsbAutoScroll,
-            this.tsbServerState,
-            this.toolStripSeparator3,
-            this.tsbClearLog,
-            this.toolStripSeparator4,
-            this.tsbAbout,
-            this.toolStripSeparator5,
-            this.tstbPort,
-            this.toolStripLabel1});
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.tsbEnableLog, this.toolStripSeparator2, this.tsbLogFilter, this.toolStripSeparator1, this.tsbAutoScroll, this.tsbServerState, this.toolStripSeparator3, this.tsbClearLog, this.toolStripSeparator4, this.tsbAbout, this.toolStripSeparator5, this.tstbPort, this.toolStripLabel1 });
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(890, 25);
+            this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.toolStrip1.Size = new System.Drawing.Size(1335, 32);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -119,29 +104,23 @@
             this.tsbEnableLog.Image = ((System.Drawing.Image)(resources.GetObject("tsbEnableLog.Image")));
             this.tsbEnableLog.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbEnableLog.Name = "tsbEnableLog";
-            this.tsbEnableLog.Size = new System.Drawing.Size(85, 22);
+            this.tsbEnableLog.Size = new System.Drawing.Size(119, 29);
             this.tsbEnableLog.Text = "Enable Log";
             this.tsbEnableLog.CheckedChanged += new System.EventHandler(this.tsbEnableLog_CheckedChanged);
+            this.tsbEnableLog.Click += new System.EventHandler(this.tsbEnableLog_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 32);
             // 
             // tsbLogFilter
             // 
-            this.tsbLogFilter.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbLogInfo,
-            this.tsbLogWarn,
-            this.tsbLogError,
-            this.tsbLogCritical,
-            this.tsbLogTrace,
-            this.tsbLogDebug,
-            this.tsbLogVerbose});
+            this.tsbLogFilter.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.tsbLogInfo, this.tsbLogWarn, this.tsbLogError, this.tsbLogCritical, this.tsbLogTrace, this.tsbLogDebug, this.tsbLogVerbose });
             this.tsbLogFilter.Image = ((System.Drawing.Image)(resources.GetObject("tsbLogFilter.Image")));
             this.tsbLogFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbLogFilter.Name = "tsbLogFilter";
-            this.tsbLogFilter.Size = new System.Drawing.Size(86, 22);
+            this.tsbLogFilter.Size = new System.Drawing.Size(114, 29);
             this.tsbLogFilter.Text = "Log filter";
             // 
             // tsbLogInfo
@@ -150,7 +129,7 @@
             this.tsbLogInfo.CheckOnClick = true;
             this.tsbLogInfo.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tsbLogInfo.Name = "tsbLogInfo";
-            this.tsbLogInfo.Size = new System.Drawing.Size(137, 22);
+            this.tsbLogInfo.Size = new System.Drawing.Size(178, 30);
             this.tsbLogInfo.Text = "Information";
             this.tsbLogInfo.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
             // 
@@ -160,7 +139,7 @@
             this.tsbLogWarn.CheckOnClick = true;
             this.tsbLogWarn.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tsbLogWarn.Name = "tsbLogWarn";
-            this.tsbLogWarn.Size = new System.Drawing.Size(137, 22);
+            this.tsbLogWarn.Size = new System.Drawing.Size(178, 30);
             this.tsbLogWarn.Text = "Warning";
             this.tsbLogWarn.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
             // 
@@ -170,7 +149,7 @@
             this.tsbLogError.CheckOnClick = true;
             this.tsbLogError.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tsbLogError.Name = "tsbLogError";
-            this.tsbLogError.Size = new System.Drawing.Size(137, 22);
+            this.tsbLogError.Size = new System.Drawing.Size(178, 30);
             this.tsbLogError.Text = "Error";
             this.tsbLogError.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
             // 
@@ -180,7 +159,7 @@
             this.tsbLogCritical.CheckOnClick = true;
             this.tsbLogCritical.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tsbLogCritical.Name = "tsbLogCritical";
-            this.tsbLogCritical.Size = new System.Drawing.Size(137, 22);
+            this.tsbLogCritical.Size = new System.Drawing.Size(178, 30);
             this.tsbLogCritical.Text = "Critical";
             this.tsbLogCritical.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
             // 
@@ -190,7 +169,7 @@
             this.tsbLogTrace.CheckOnClick = true;
             this.tsbLogTrace.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tsbLogTrace.Name = "tsbLogTrace";
-            this.tsbLogTrace.Size = new System.Drawing.Size(137, 22);
+            this.tsbLogTrace.Size = new System.Drawing.Size(178, 30);
             this.tsbLogTrace.Text = "Trace";
             this.tsbLogTrace.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
             // 
@@ -198,7 +177,7 @@
             // 
             this.tsbLogDebug.CheckOnClick = true;
             this.tsbLogDebug.Name = "tsbLogDebug";
-            this.tsbLogDebug.Size = new System.Drawing.Size(137, 22);
+            this.tsbLogDebug.Size = new System.Drawing.Size(178, 30);
             this.tsbLogDebug.Text = "Debug";
             this.tsbLogDebug.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
             // 
@@ -206,14 +185,14 @@
             // 
             this.tsbLogVerbose.CheckOnClick = true;
             this.tsbLogVerbose.Name = "tsbLogVerbose";
-            this.tsbLogVerbose.Size = new System.Drawing.Size(137, 22);
+            this.tsbLogVerbose.Size = new System.Drawing.Size(178, 30);
             this.tsbLogVerbose.Text = "Verbose";
             this.tsbLogVerbose.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 32);
             // 
             // tsbAutoScroll
             // 
@@ -221,7 +200,7 @@
             this.tsbAutoScroll.Image = ((System.Drawing.Image)(resources.GetObject("tsbAutoScroll.Image")));
             this.tsbAutoScroll.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAutoScroll.Name = "tsbAutoScroll";
-            this.tsbAutoScroll.Size = new System.Drawing.Size(110, 22);
+            this.tsbAutoScroll.Size = new System.Drawing.Size(156, 29);
             this.tsbAutoScroll.Text = "Log Auto-Scroll";
             this.tsbAutoScroll.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
             // 
@@ -232,28 +211,28 @@
             this.tsbServerState.Image = global::OPLServer.Properties.Resources.start;
             this.tsbServerState.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbServerState.Name = "tsbServerState";
-            this.tsbServerState.Size = new System.Drawing.Size(194, 22);
+            this.tsbServerState.Size = new System.Drawing.Size(289, 29);
             this.tsbServerState.Text = "Server is stopped (press to start)";
             this.tsbServerState.CheckedChanged += new System.EventHandler(this.tsbServerState_CheckedChanged);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 32);
             // 
             // tsbClearLog
             // 
             this.tsbClearLog.Image = global::OPLServer.Properties.Resources.clear;
             this.tsbClearLog.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbClearLog.Name = "tsbClearLog";
-            this.tsbClearLog.Size = new System.Drawing.Size(77, 22);
+            this.tsbClearLog.Size = new System.Drawing.Size(106, 29);
             this.tsbClearLog.Text = "Clear Log";
             this.tsbClearLog.Click += new System.EventHandler(this.tsbClearLog_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 32);
             // 
             // tsbAbout
             // 
@@ -261,14 +240,14 @@
             this.tsbAbout.Image = ((System.Drawing.Image)(resources.GetObject("tsbAbout.Image")));
             this.tsbAbout.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbAbout.Name = "tsbAbout";
-            this.tsbAbout.Size = new System.Drawing.Size(44, 22);
+            this.tsbAbout.Size = new System.Drawing.Size(66, 29);
             this.tsbAbout.Text = "About";
             this.tsbAbout.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 32);
             // 
             // tstbPort
             // 
@@ -276,7 +255,7 @@
             this.tstbPort.BackColor = System.Drawing.Color.White;
             this.tstbPort.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tstbPort.Name = "tstbPort";
-            this.tstbPort.Size = new System.Drawing.Size(40, 25);
+            this.tstbPort.Size = new System.Drawing.Size(40, 32);
             this.tstbPort.Text = "1024";
             this.tstbPort.TextBoxTextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tstbPort.ToolTipText = "Server Port";
@@ -286,17 +265,18 @@
             // 
             this.toolStripLabel1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(32, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(48, 29);
             this.toolStripLabel1.Text = "Port:";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(890, 332);
+            this.ClientSize = new System.Drawing.Size(1335, 511);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "OPL Server by MaRioLo";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -306,7 +286,6 @@
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

@@ -1,5 +1,3 @@
-using System;
-
 namespace SMBLibrary.Authentication.GSSAPI
 {
     public enum GSSAttributeName

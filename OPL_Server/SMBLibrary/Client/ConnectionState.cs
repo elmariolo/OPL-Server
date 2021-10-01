@@ -4,13 +4,9 @@
  * the GNU Lesser Public License as published by the Free Software Foundation,
  * either version 3 of the License, or (at your option) any later version.
  */
-using System;
-using System.Collections.Generic;
-using System.Net;
+
 using System.Net.Sockets;
 using SMBLibrary.NetBios;
-using SMBLibrary.SMB1;
-using Utilities;
 
 namespace SMBLibrary.Client
 {

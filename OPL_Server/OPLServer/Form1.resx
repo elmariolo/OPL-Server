@@ -112,19 +112,19 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="tsbEnableLog.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKCSURBVFhH7ddPiA5xHMfxWdclWo6K3LY47JaidfAvWzgo
+        YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAKCSURBVFhH7ddPiA5xHMfxWdclWo6K3LY47JaidfAvWzgo
         hS1/zmhrOaAURaFY66D8d7EORClCTvawS6H2gkSK/E8UcpDw/szs9+k70/w88zzzPLn41Ktmfr+Z2W+/
         /c1vfk+Uk0X4XdIB1J2L+I4FWIOeglZhKV5ARWxFXbmFx8lhXbkHG4mVaqg1N/EkOawr92EFyBzUlEYX
         8APTUTiNLkA0L1pRKM0oQO6gUMoWcBd5BUih17NsATOxDiucTrzGbVRN2QJCGYH+PVWjAsqsA6GoAK0R
@@ -141,7 +141,7 @@
   <data name="tsbLogFilter.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKCSURBVFhH7ddPiA5xHMfxWdclWo6K3LY47JaidfAvWzgo
+        YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAKCSURBVFhH7ddPiA5xHMfxWdclWo6K3LY47JaidfAvWzgo
         hS1/zmhrOaAURaFY66D8d7EORClCTvawS6H2gkSK/E8UcpDw/szs9+k70/w88zzzPLn41Ktmfr+Z2W+/
         /c1vfk+Uk0X4XdIB1J2L+I4FWIOeglZhKV5ARWxFXbmFx8lhXbkHG4mVaqg1N/EkOawr92EFyBzUlEYX
         8APTUTiNLkA0L1pRKM0oQO6gUMoWcBd5BUih17NsATOxDiucTrzGbVRN2QJCGYH+PVWjAsqsA6GoAK0R
@@ -158,7 +158,7 @@
   <data name="tsbAutoScroll.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAINSURBVFhH1ZbNSgJRGIZP0M+qaKngBYjiLbQJIiJo0T7E
+        YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAINSURBVFhH1ZbNSgJRGIZP0M+qaKngBYjiLbQJIiJo0T7E
         hYqihAoaolODCVZSBiVBCy9ABNGN7ryEKLqBqBYK3oH2nfF8puPMYX6OQQ+8fJ1zZnrebLQIMh6PV0ej
         0QZbLg3wrEPW2HJCrVY78fl8L263+71UKiXZtnAqlUrU4/G8eb3e12q1GlI2e73eDozxbBKJxBVMoeTz
         eQnGnKfdbu/Tgwv1AY3IElpymlQqdUNardaB1iGNiBJ6cpp6vX4Mk5BMJnOJm+rYKcGTR6PRCjyMK/D1
@@ -173,7 +173,7 @@
   <data name="tsbAbout.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIDSURBVDhPpZLrS5NhGMb3j4SWh0oRQVExD4gonkDpg4hG
+        YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAIDSURBVDhPpZLrS5NhGMb3j4SWh0oRQVExD4gonkDpg4hG
         YKxG6WBogkMZKgPNCEVJFBGdGETEvgwyO9DJE5syZw3PIlPEE9pgBCLZ5XvdMB8Ew8gXbl54nuf63dd9
         0OGSnwCahxbPRNPAPMw9Xpg6ZmF46kZZ0xSKzJPIrhpDWsVnpBhGkKx3nAX8Pv7z1zg8OoY/cITdn4fw
         bf/C0kYAN3Ma/w3gWfZL5kzTKBxjWyK2DftwI9tyMYCZKXbNHaD91bLYJrDXsYbrWfUKwJrPE9M2M1Oc

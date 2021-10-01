@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Utilities;
-
 namespace SMBLibrary.SMB1
 {
     public enum TransactionSubcommandName : ushort

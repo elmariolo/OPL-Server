@@ -6,9 +6,6 @@
  * 
  * Based on: https://bitlush.com/blog/rc4-encryption-in-c-sharp
  */
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace System.Security.Cryptography
 {

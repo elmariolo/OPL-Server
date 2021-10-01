@@ -4,10 +4,8 @@
  * the GNU Lesser Public License as published by the Free Software Foundation,
  * either version 3 of the License, or (at your option) any later version.
  */
-using System;
-using System.Collections.Generic;
+
 using SMBLibrary.Authentication.GSSAPI;
-using SMBLibrary.Authentication.NTLM;
 using SMBLibrary.SMB2;
 using Utilities;
 

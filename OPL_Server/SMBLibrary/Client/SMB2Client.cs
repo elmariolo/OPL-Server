@@ -11,9 +11,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Threading;
-using SMBLibrary.Authentication.NTLM;
 using SMBLibrary.NetBios;
-using SMBLibrary.Services;
 using SMBLibrary.SMB2;
 using Utilities;
 
