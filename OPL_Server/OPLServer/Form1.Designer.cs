@@ -107,7 +107,6 @@
             this.tsbEnableLog.Size = new System.Drawing.Size(119, 29);
             this.tsbEnableLog.Text = "Enable Log";
             this.tsbEnableLog.CheckedChanged += new System.EventHandler(this.tsbEnableLog_CheckedChanged);
-            this.tsbEnableLog.Click += new System.EventHandler(this.tsbEnableLog_Click);
             // 
             // toolStripSeparator2
             // 
