@@ -1,8 +1,0 @@
-D:\Admin\Desktop\SMBLibrary-master\Utilities\bin\Release\Utilities.dll
-D:\Admin\Desktop\SMBLibrary-master\Utilities\bin\Release\Utilities.pdb
-D:\Admin\Desktop\SMBLibrary-master\Utilities\obj\Release\Utilities.dll
-D:\Admin\Desktop\SMBLibrary-master\Utilities\obj\Release\Utilities.pdb
-D:\Visual Studio 2012\Projects\OPL_Server\Utilities\bin\Release\Utilities.dll
-D:\Visual Studio 2012\Projects\OPL_Server\Utilities\bin\Release\Utilities.pdb
-D:\Visual Studio 2012\Projects\OPL_Server\Utilities\obj\Release\Utilities.dll
-D:\Visual Studio 2012\Projects\OPL_Server\Utilities\obj\Release\Utilities.pdb
