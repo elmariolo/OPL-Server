@@ -1,13 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OPLServer", "OPLServer\OPLServer.csproj", "{F77D3740-CA78-4988-A225-0AAEF272053A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMBLibrary.VS2005", "SMBLibrary\SMBLibrary.VS2005.csproj", "{8D9E8F5D-FD13-4E4C-9723-A333DA2034A7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SMBLibrary.Win32.VS2005", "SMBLibrary.Win32\SMBLibrary.Win32.VS2005.csproj", "{8CE25496-A52B-4841-822F-74C469D10EE7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities.VS2005", "Utilities\Utilities.VS2005.csproj", "{6E0F2D1E-6167-4032-BA90-DEE3A99207D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OplServer.Interface", "OplServer.Interface\OplServer.Interface.csproj", "{F77D3740-CA78-4988-A225-0AAEF272053A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,18 +13,6 @@ Global
 		{F77D3740-CA78-4988-A225-0AAEF272053A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F77D3740-CA78-4988-A225-0AAEF272053A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F77D3740-CA78-4988-A225-0AAEF272053A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8D9E8F5D-FD13-4E4C-9723-A333DA2034A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8D9E8F5D-FD13-4E4C-9723-A333DA2034A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8D9E8F5D-FD13-4E4C-9723-A333DA2034A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8D9E8F5D-FD13-4E4C-9723-A333DA2034A7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8CE25496-A52B-4841-822F-74C469D10EE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8CE25496-A52B-4841-822F-74C469D10EE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8CE25496-A52B-4841-822F-74C469D10EE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8CE25496-A52B-4841-822F-74C469D10EE7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6E0F2D1E-6167-4032-BA90-DEE3A99207D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E0F2D1E-6167-4032-BA90-DEE3A99207D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E0F2D1E-6167-4032-BA90-DEE3A99207D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E0F2D1E-6167-4032-BA90-DEE3A99207D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
