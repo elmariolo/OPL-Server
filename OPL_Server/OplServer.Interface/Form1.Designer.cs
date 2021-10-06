@@ -1,4 +1,4 @@
-﻿namespace OPLServer
+﻿namespace OplServer.Interface
 {
     partial class Form1
     {
@@ -207,7 +207,7 @@
             // 
             this.tsbServerState.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tsbServerState.CheckOnClick = true;
-            this.tsbServerState.Image = global::OPLServer.Properties.Resources.start;
+            this.tsbServerState.Image = global::OplServer.Interface.Properties.Resources.start;
             this.tsbServerState.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbServerState.Name = "tsbServerState";
             this.tsbServerState.Size = new System.Drawing.Size(289, 29);
@@ -221,7 +221,7 @@
             // 
             // tsbClearLog
             // 
-            this.tsbClearLog.Image = global::OPLServer.Properties.Resources.clear;
+            this.tsbClearLog.Image = global::OplServer.Interface.Properties.Resources.clear;
             this.tsbClearLog.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbClearLog.Name = "tsbClearLog";
             this.tsbClearLog.Size = new System.Drawing.Size(106, 29);

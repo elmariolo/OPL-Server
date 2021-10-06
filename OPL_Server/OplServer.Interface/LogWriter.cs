@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using Utilities;
 
-namespace OPLServer
+namespace OplServer.Interface
 {
     public class LogWriter
     {

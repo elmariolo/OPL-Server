@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
-using OPLServer.Properties;
+using OplServer.Interface.Properties;
 using SMBLibrary;
 using SMBLibrary.Authentication.GSSAPI;
 using SMBLibrary.Authentication.NTLM;
@@ -13,7 +13,7 @@ using SMBLibrary.Server;
 using SMBLibrary.Win32;
 using Utilities;
 
-namespace OPLServer
+namespace OplServer.Interface
 {
     public partial class Form1 : Form
     {

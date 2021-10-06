@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OPLServer.Properties {
+namespace OplServer.Interface.Properties {
     using System;
     
     

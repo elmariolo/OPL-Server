@@ -1,4 +1,4 @@
-﻿namespace OPLServer
+﻿namespace OplServer.Interface
 {
     partial class frmAbout
     {
@@ -95,7 +95,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pictureBox1.Image = global::OPLServer.Properties.Resources.icon64;
+            this.pictureBox1.Image = global::OplServer.Interface.Properties.Resources.icon64;
             this.pictureBox1.Location = new System.Drawing.Point(181, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(70, 70);

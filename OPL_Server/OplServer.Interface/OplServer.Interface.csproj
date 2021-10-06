@@ -7,7 +7,7 @@
     <ProjectGuid>{F77D3740-CA78-4988-A225-0AAEF272053A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OPLServer</RootNamespace>
+    <RootNamespace>OplServer.Interface</RootNamespace>
     <AssemblyName>OplServer.Interface</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

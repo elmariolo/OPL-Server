@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace OPLServer
+namespace OplServer.Interface
 {
     internal static class Program
     {

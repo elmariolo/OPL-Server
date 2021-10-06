@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace OPLServer
+namespace OplServer.Interface
 {
     public partial class frmAbout : Form
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace OPLServer
+namespace OplServer.Interface
 {
     public class UserCollection : List<User>
     {
