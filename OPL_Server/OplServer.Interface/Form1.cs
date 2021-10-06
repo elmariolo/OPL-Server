@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
@@ -23,10 +23,12 @@ namespace OPLServer
         private readonly NTLMAuthenticationProviderBase authenticationMechanism;
         public bool isLoadingSettings;
         private readonly LogWriter m_logWriter;
-        private readonly SMBServer m_server;
+        private readonly SMBLibrary.Server.SMBServer m_server;
         private readonly IPAddress serverAddress = IPAddress.Any;
         private readonly SMBTransportType transportType = SMBTransportType.DirectTCPTransport;
         private readonly UserCollection users = new UserCollection();
+        
+        private int ServerPort { get; set; }
 
         public Form1()
         {
@@ -51,7 +53,7 @@ namespace OPLServer
             }
 
             var securityProvider = new GSSProvider(authenticationMechanism);
-            m_server = new SMBServer(shares, securityProvider);
+            m_server = new SMBLibrary.Server.SMBServer(shares, securityProvider);
 
             loadSettings();
 
@@ -134,11 +136,6 @@ namespace OPLServer
             setSetting("LogTrace", tsbLogTrace.Checked ? "1" : "0");
             setSetting("LogVerbose", tsbLogVerbose.Checked ? "1" : "0");
             setSetting("LogWarn", tsbLogWarn.Checked ? "1" : "0");
-        }
-
-        private void setServerPort(int servPort)
-        {
-            m_server.DirectTCPPort = servPort;
         }
 
         private void m_server_LogEntryAdded(object sender, LogEntry e)
@@ -235,7 +232,14 @@ namespace OPLServer
             {
                 try
                 {
-                    m_server.Start(serverAddress, transportType, true, false);
+                    m_server.Start(
+                        serverAddress,
+                        transportType,
+                        true,
+                        false,
+                        false,
+                        null,
+                        ServerPort);
                 }
                 catch (Exception ex)
                 {
@@ -299,7 +303,7 @@ namespace OPLServer
             {
                 if (finalport > 0 && finalport < 1025)
                 {
-                    setServerPort(finalport);
+                    ServerPort = finalport;
                     tstbPort.Text = finalport.ToString();
                     saveSettings();
                 }
