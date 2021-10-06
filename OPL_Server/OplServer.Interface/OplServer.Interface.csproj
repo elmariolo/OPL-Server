@@ -52,13 +52,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SMBLibrary, Version=1.4.6.2, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\SMBLibrary.dll</HintPath>
+      <HintPath>..\packages\SMBLibrary.1.4.6.2\lib\net40\SMBLibrary.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="SMBLibrary.Win32, Version=1.4.6.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\SMBLibrary.Win32.dll</HintPath>
-    </Reference>
-    <Reference Include="SMBServer, Version=1.4.6.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\SMBServer.dll</HintPath>
+      <HintPath>..\packages\SMBLibrary.Win32.1.4.6\lib\net40\SMBLibrary.Win32.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -70,9 +69,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Utilities, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\Utilities.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Form1.cs">
@@ -108,6 +104,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

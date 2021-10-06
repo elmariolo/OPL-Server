@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Configuration;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Windows.Forms;
 using OplServer.Interface.Properties;
 using SMBLibrary;
@@ -23,12 +24,19 @@ namespace OplServer.Interface
         private readonly NTLMAuthenticationProviderBase authenticationMechanism;
         public bool isLoadingSettings;
         private readonly LogWriter m_logWriter;
-        private readonly SMBLibrary.Server.SMBServer m_server;
+        private readonly SMBServer m_server;
         private readonly IPAddress serverAddress = IPAddress.Any;
         private readonly SMBTransportType transportType = SMBTransportType.DirectTCPTransport;
         private readonly UserCollection users = new UserCollection();
-        
-        private int ServerPort { get; set; }
+
+        private readonly FieldInfo _directTcpPortFieldInfo = 
+            typeof(SMBServer).GetField("DirectTCPPort");
+
+        private int ServerPort
+        {
+            get => (int)_directTcpPortFieldInfo.GetValue(null);
+            set => _directTcpPortFieldInfo.SetValue(null, value);
+        }
 
         public Form1()
         {
@@ -53,7 +61,7 @@ namespace OplServer.Interface
             }
 
             var securityProvider = new GSSProvider(authenticationMechanism);
-            m_server = new SMBLibrary.Server.SMBServer(shares, securityProvider);
+            m_server = new SMBServer(shares, securityProvider);
 
             loadSettings();
 
@@ -236,10 +244,7 @@ namespace OplServer.Interface
                         serverAddress,
                         transportType,
                         true,
-                        false,
-                        false,
-                        null,
-                        ServerPort);
+                        false);
                 }
                 catch (Exception ex)
                 {
@@ -301,7 +306,7 @@ namespace OplServer.Interface
 
             if (int.TryParse(tstbPort.Text, out finalport))
             {
-                if (finalport > 0 && finalport < 1025)
+                if (finalport is > 0 and < 1025)
                 {
                     ServerPort = finalport;
                     tstbPort.Text = finalport.ToString();
