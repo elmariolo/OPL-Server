@@ -1,53 +1,184 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-
-using SMBLibrary;
+﻿using SMBLibrary;
+using SMBLibrary.Authentication.GSSAPI;
 using SMBLibrary.Authentication.NTLM;
 using SMBLibrary.Server;
-using System.Net;
 using SMBLibrary.Win32;
-using System.IO;
-using SMBLibrary.Authentication.GSSAPI;
-using Utilities;
-using System.Diagnostics;
-using SMBLibrary.Win32.Security;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
+using System.Net;
+using System.Windows.Forms;
+using Utilities;
 
 namespace OPLServer
 {
     public partial class Form1 : Form
     {
+        #region SMBServer variables
+
         private SMBServer m_server;
         private IPAddress serverAddress = IPAddress.Any;
         private SMBTransportType transportType = SMBTransportType.DirectTCPTransport;
         private NTLMAuthenticationProviderBase authenticationMechanism;
-        private LogWriter m_logWriter;
         private UserCollection users = new UserCollection();
-        private string AppPath = AppDomain.CurrentDomain.BaseDirectory;
+        private LogWriter m_logWriter;
+        
+        #endregion
+        
+        #region App variables
+
+        private static string AppPath = AppDomain.CurrentDomain.BaseDirectory;
         public delegate void addLog(string a, string b, string c, string d);
+
+        private bool allowshowdisplay = true;
         public bool isLoadingSettings = false;
+        public bool silentMode = false;
+        public string sharePath = AppPath + "PS2";
+        public int serverPort = 1024;
+        public bool logEnabled = true;
+        public bool autoScrollLog = false;
+        public bool logLvlCritical = true;
+        public bool logLvlDebug = false;
+        public bool logLvlError = true;
+        public bool logLvlInfo = true;
+        public bool logLvlTrace = true;
+        public bool logLvlVerbose = false;
+        public bool logLvlWarn = true;
+        
+        #endregion
+
+        #region Form Methods and GUI
 
         public Form1()
         {
             InitializeComponent();
 
-            if (!Directory.Exists(AppPath + "PS2"))
+            loadSettings();
+
+            if (!Directory.Exists(sharePath))
             {
-                Directory.CreateDirectory(AppPath + "PS2");
+                Directory.CreateDirectory(sharePath);
             }
 
+            mainInit();
+
+            string[] args = Environment.GetCommandLineArgs();
+
+            foreach (string arg in args)
+            {
+                if (existArg("/NOLOG", args))
+                {
+                    enableLog(false);
+                }
+
+                if (existArg("/START", args))
+                {
+                    tsbServerState.Checked = true;
+                }
+
+                if (existArg("/SILENT", args))
+                {
+                    silentMode = true;
+                }
+
+                if (existArg("/HIDE", args))
+                {
+                    allowshowdisplay = false;
+                    tsbToTray_Click(null, null);
+                }
+            }
+
+            enableLog(logEnabled);
+        }
+
+        private bool existArg(string arg, string[] args)
+        {
+            foreach (string strarg in args)
+            {
+                if (arg.ToUpper() == strarg.ToUpper()) return true;
+            }
+
+            return false;
+        }
+
+        protected override void SetVisibleCore(bool value)
+        {
+            base.SetVisibleCore(allowshowdisplay ? value : allowshowdisplay);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Form1_Resize(sender, e);
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            m_server.Stop();
+            m_logWriter.CloseLogFile();
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            lstvwLog.Columns[0].Width = 130;
+            lstvwLog.Columns[1].Width = 100;
+            lstvwLog.Columns[2].Width = 80;
+            lstvwLog.Columns[3].Width = (this.Width - 50) - lstvwLog.Columns[0].Width - lstvwLog.Columns[1].Width - lstvwLog.Columns[2].Width;
+        }
+
+        public void addLogList(string time, string seve, string source, string messg)
+        {
+            if (!logEnabled) return;
+
+            if (lstvwLog.InvokeRequired)
+            {
+                addLog tmplog = new addLog(addLogList);
+                this.Invoke(tmplog, time, seve, source, messg);
+            }
+            else
+            {
+                ListViewItem item = new ListViewItem(time);
+                item.SubItems.Add(seve);
+                item.SubItems.Add(source);
+                item.SubItems.Add(messg);
+
+                lstvwLog.Items.Add(item);
+                if (autoScrollLog) item.EnsureVisible();
+            }
+        }
+
+        private void tsbToTray_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            notifyIcon1.Visible = true;
+            if (!silentMode)
+            {
+                if (tsbServerState.Checked)
+                    notifyIcon1.ShowBalloonTip(1, "OPL Server", "Server is RUNNING on port " + serverPort, ToolTipIcon.None);
+                else
+                    notifyIcon1.ShowBalloonTip(1, "OPL Server", "Server is STOPPED", ToolTipIcon.None);
+            }
+        }
+
+        private void notifyIcon1_DoubleClick(object sender, EventArgs e)
+        {
+            allowshowdisplay = true;
+            this.Show();
+            notifyIcon1.Visible = false;
+        }
+
+        #endregion
+
+        #region SMBServer Methods
+
+        void mainInit()
+        {
             users.Add("Guest", "");
             users.Add("Guest", "Guest");
             authenticationMechanism = new IndependentNTLMAuthenticationProvider(users.GetUserPassword);
 
             List<ShareSettings> sharesSettings = new List<ShareSettings>();
-            ShareSettings itemtoshare = new ShareSettings("PS2", AppPath + "PS2", new List<string>() { "Guest" }, new List<string>() { "Guest" });
+            ShareSettings itemtoshare = new ShareSettings("PS2", sharePath, new List<string>() { "Guest" }, new List<string>() { "Guest" });
             sharesSettings.Add(itemtoshare);
 
             SMBShareCollection shares = new SMBShareCollection();
@@ -60,60 +191,7 @@ namespace OPLServer
             GSSProvider securityProvider = new GSSProvider(authenticationMechanism);
             m_server = new SMBLibrary.Server.SMBServer(shares, securityProvider);
 
-            loadSettings();
-
             m_logWriter = new LogWriter();
-            if (tsbEnableLog.Checked) m_server.LogEntryAdded += m_server_LogEntryAdded;
-
-            string[] args = Environment.GetCommandLineArgs();
-
-            foreach (string arg in args)
-            {
-                if (arg.ToUpper() == "/NOLOG")
-                {
-                    addLogList(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "Information", "Commandline", "/NOLOG");
-                    tsbEnableLog.Checked = false;
-                }
-
-                if (arg.ToUpper() == "/START")
-                {
-                    addLogList(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "Information", "Commandline", "/START");
-                    tsbServerState.Checked = true;
-                    //tsbServerState_CheckedChanged(null, null);
-                }                
-            }
-        }
-
-        void loadSettings()
-        {
-            isLoadingSettings = true;
-            if (getSetting("ServerPort") != "") tstbPort.Text = getSetting("ServerPort");
-            if (getSetting("EnableLog") == "1") { tsbEnableLog.Checked = true; } else { tsbEnableLog.Checked = false; }
-            if (getSetting("AutoScroll") == "1") { tsbAutoScroll.Checked = true; } else { tsbAutoScroll.Checked = false; }
-            if (getSetting("LogCritical") == "1") { tsbLogCritical.Checked = true; } else { tsbLogCritical.Checked = false; }
-            if (getSetting("LogDebug") == "1") { tsbLogDebug.Checked = true; } else { tsbLogDebug.Checked = false; }
-            if (getSetting("LogError") == "1") { tsbLogError.Checked = true; } else { tsbLogError.Checked = false; }
-            if (getSetting("LogInfo") == "1") { tsbLogInfo.Checked = true; } else { tsbLogInfo.Checked = false; }
-            if (getSetting("LogTrace") == "1") { tsbLogTrace.Checked = true; } else { tsbLogTrace.Checked = false; }
-            if (getSetting("LogVerbose") == "1") { tsbLogVerbose.Checked = true; } else { tsbLogVerbose.Checked = false; }
-            if (getSetting("LogWarn") == "1") { tsbLogWarn.Checked = true; } else { tsbLogWarn.Checked = false; }
-            isLoadingSettings = false;
-        }
-
-        void saveSettings()
-        {
-            if (isLoadingSettings) return;
-
-            setSetting("ServerPort", tstbPort.Text);
-            setSetting("EnableLog", tsbEnableLog.Checked ? "1" : "0");
-            setSetting("AutoScroll", tsbAutoScroll.Checked  ? "1" : "0");
-            setSetting("LogCritical", tsbLogCritical.Checked  ? "1" : "0");
-            setSetting("LogDebug", tsbLogDebug.Checked  ? "1" : "0");
-            setSetting("LogError", tsbLogError.Checked  ? "1" : "0");
-            setSetting("LogInfo", tsbLogInfo.Checked  ? "1" : "0");
-            setSetting("LogTrace", tsbLogTrace.Checked  ? "1" : "0");
-            setSetting("LogVerbose", tsbLogVerbose.Checked  ? "1" : "0");
-            setSetting("LogWarn", tsbLogWarn.Checked ? "1" : "0");
         }
 
         void setServerPort(int servPort)
@@ -123,37 +201,79 @@ namespace OPLServer
             m_server.DirectTCPPort = servPort;
         }
 
-        void m_server_LogEntryAdded(object sender, LogEntry e)
+        void serverStart()
         {
-            if (e.Severity == Severity.Critical && tsbLogCritical.Checked == false) return;
-            if (e.Severity == Severity.Debug && tsbLogDebug.Checked == false) return;
-            if (e.Severity == Severity.Error && tsbLogError.Checked == false) return;
-            if (e.Severity == Severity.Information && tsbLogInfo.Checked == false) return;
-            if (e.Severity == Severity.Trace && tsbLogTrace.Checked == false) return;
-            if (e.Severity == Severity.Verbose && tsbLogVerbose.Checked == false) return;
-            if (e.Severity == Severity.Warning && tsbLogWarn.Checked == false) return;
+            enableLog(false);
 
-            addLogList(e.Time.ToString("yyyy-MM-dd HH:mm:ss"),e.Severity.ToString(),e.Source,e.Message);
+            mainInit();
+
+            enableLog(logEnabled);
+
+            setServerPort(serverPort);
+
+            m_logWriter.CloseLogFile();
+
+            try
+            {
+                m_server.Start(serverAddress, transportType, true, false);
+                addLogList(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "Information", "Server", "Server started at port " + serverPort);
+            }
+            catch (Exception ex)
+            {
+                addLogList(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "Error", "Server", "Can't start server at port " + serverPort);
+                m_logWriter.CloseLogFile();
+                m_server.Stop();
+            }
         }
 
-        public void addLogList(string time, string seve, string source, string messg)
+        void serverStop()
         {
-            if (listView1.InvokeRequired)
+            try
             {
-                addLog tmplog = new addLog(addLogList);
-                this.Invoke(tmplog, time,seve,source,messg);
+                m_server.Stop();
+                addLogList(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "Information", "Server", "Server stop");
+            }
+            catch (Exception ex)
+            {
+                addLogList(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "Error", "Server", "Error trying to stop server");
+                MessageBox.Show(ex.Message, "Error trying to stop server");
+            }
+        }
+
+        void enableLog(bool val)
+        {
+            if (val)
+            {
+                try
+                {
+                    m_server.LogEntryAdded += m_server_LogEntryAdded;
+                }
+                catch { }
+                lstvwLog.Enabled = true;
             }
             else
             {
-                ListViewItem item = new ListViewItem(time);
-                item.SubItems.Add(seve);
-                item.SubItems.Add(source);
-                item.SubItems.Add(messg);
-
-                listView1.Items.Add(item);
-                if (tsbAutoScroll.Checked) item.EnsureVisible();
+                try
+                {
+                    m_server.LogEntryAdded -= m_server_LogEntryAdded;
+                }
+                catch { }
+                lstvwLog.Enabled = false;
             }
         }
+
+        void m_server_LogEntryAdded(object sender, LogEntry e)
+        {
+            if (e.Severity == Severity.Critical && logLvlCritical == false) return;
+            if (e.Severity == Severity.Debug && logLvlDebug == false) return;
+            if (e.Severity == Severity.Error && logLvlError == false) return;
+            if (e.Severity == Severity.Information && logLvlInfo == false) return;
+            if (e.Severity == Severity.Trace && logLvlTrace == false) return;
+            if (e.Severity == Severity.Verbose && logLvlVerbose == false) return;
+            if (e.Severity == Severity.Warning && logLvlWarn == false) return;
+
+            addLogList(e.Time.ToString("yyyy-MM-dd HH:mm:ss"),e.Severity.ToString(),e.Source,e.Message);
+        }        
 
         public static FileSystemShare InitializeShare(ShareSettings shareSettings)
         {
@@ -199,34 +319,24 @@ namespace OPLServer
             return -1;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            Form1_Resize(sender, e);
-        }
+        #endregion
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            m_server.Stop();
-            m_logWriter.CloseLogFile();
-        }
+        #region Toolbar Events
 
-        private void Form1_Resize(object sender, EventArgs e)
+        private void tsbAutoScroll_CheckStateChanged(object sender, EventArgs e)
         {
-            listView1.Columns[0].Width = 130;
-            listView1.Columns[1].Width = 100;
-            listView1.Columns[2].Width = 80;
-            listView1.Columns[3].Width = (this.Width-50) - listView1.Columns[0].Width - listView1.Columns[1].Width - listView1.Columns[2].Width;
+            if (isLoadingSettings) return;
+            autoScrollLog = tsbAutoScroll.Checked;
+            saveSettings();
         }
 
         private void tsbServerState_CheckedChanged(object sender, EventArgs e)
         {
-            tstbPort_Leave(sender, e);
-
             if (tsbServerState.Checked)
             {
                 try
                 {
-                    m_server.Start(serverAddress, transportType, true, false);
+                    serverStart();
                 }
                 catch (Exception ex)
                 {
@@ -234,50 +344,37 @@ namespace OPLServer
                     tsbServerState.Image = Properties.Resources.start;
                     tsbServerState.Text = "Server is stopped (press to start)";
                     tstbPort.Enabled = true;
-                    MessageBox.Show(ex.Message, "Error");
+                    tsbSelectFolder.Enabled = true;
+                    MessageBox.Show(ex.Message, "Error trying to start server");
                     return;
                 }
-
-                m_logWriter.CloseLogFile();
+                
                 tsbServerState.Image = Properties.Resources.stop;
                 tsbServerState.Text = "Server is running (press to stop)";
                 tstbPort.Enabled = false;
+                tsbSelectFolder.Enabled = false;
             }
             else
             {
-                m_server.Stop();
-                m_logWriter.CloseLogFile();
+                serverStop();
                 tsbServerState.Image = Properties.Resources.start;
                 tsbServerState.Text = "Server is stopped (press to start)";
                 tstbPort.Enabled = true;
+                tsbSelectFolder.Enabled = true;
             }
-            saveSettings();
         }
 
         private void tsbEnableLog_CheckedChanged(object sender, EventArgs e)
         {
-            if (tsbEnableLog.Checked)
-            {
-                m_server.LogEntryAdded += m_server_LogEntryAdded;
-                listView1.Enabled = true;
-            }
-            else
-            {
-                m_server.LogEntryAdded -= m_server_LogEntryAdded;
-                listView1.Enabled = false;
-            }
-            saveSettings();
+            if (isLoadingSettings) return;
+            logEnabled = tsbEnableLog.Checked;
+            enableLog(logEnabled);
+            saveSettings();            
         }
 
         private void tsbClearLog_Click(object sender, EventArgs e)
         {
-            listView1.Items.Clear();
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            frmAbout tmpFrm = new frmAbout();
-            tmpFrm.ShowDialog(this);
+            lstvwLog.Items.Clear();
         }
 
         private void tstbPort_Leave(object sender, EventArgs e)
@@ -286,25 +383,157 @@ namespace OPLServer
 
             if (int.TryParse(tstbPort.Text, out finalport))
             {
-                if (finalport > 0 && finalport < 1025)
+                if (finalport > 0 && finalport <= 65535)
                 {
                     setServerPort(finalport);
                     tstbPort.Text = finalport.ToString();
+                    serverPort = finalport;
                     saveSettings();
                 }
                 else
                 {
-                    MessageBox.Show("The server port has to be set between 1 and 1024", "Server port range", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("The server port has to be a number between 1 and 65535", "Server port range", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     tstbPort.Text = "1024";
                     tstbPort.Focus();
                 }
             }
             else
             {
-                MessageBox.Show("The server port has to be set between 1 and 1024", "Server port range", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("The server port has to be a number between 1 and 65535", "Server port range", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 tstbPort.Text = "1024";
                 tstbPort.Focus();
             }
+        }
+
+        private void tsbLogInfo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (isLoadingSettings) return;
+            logLvlInfo = tsbLogInfo.Checked;
+            saveSettings();
+        }
+
+        private void tsbLogWarn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (isLoadingSettings) return;
+            logLvlWarn = tsbLogWarn.Checked;
+            saveSettings();
+        }
+
+        private void tsbLogError_CheckedChanged(object sender, EventArgs e)
+        {
+            if (isLoadingSettings) return;
+            logLvlError = tsbLogError.Checked;
+            saveSettings();
+        }
+
+        private void tsbLogCritical_CheckedChanged(object sender, EventArgs e)
+        {
+            if (isLoadingSettings) return;
+            logLvlCritical = tsbLogCritical.Checked;
+            saveSettings();
+        }
+
+        private void tsbLogTrace_CheckedChanged(object sender, EventArgs e)
+        {
+            if (isLoadingSettings) return;
+            logLvlTrace = tsbLogTrace.Checked;
+            saveSettings();
+        }
+
+        private void tsbLogDebug_CheckedChanged(object sender, EventArgs e)
+        {
+            if (isLoadingSettings) return;
+            logLvlDebug = tsbLogDebug.Checked;
+            saveSettings();
+        }
+
+        private void tsbLogVerbose_CheckedChanged(object sender, EventArgs e)
+        {
+            if (isLoadingSettings) return;
+            logLvlVerbose = tsbLogVerbose.Checked;
+            saveSettings();
+        }
+
+        private void tsbAbout_Click(object sender, EventArgs e)
+        {
+            frmAbout tmpFrm = new frmAbout();
+            tmpFrm.ShowDialog(this);
+        }
+
+        private void tsbSelectFolder_Click(object sender, EventArgs e)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrEmpty(fbd.SelectedPath))
+                {
+                    sharePath = fbd.SelectedPath;
+                    saveSettings();
+                    tsslblStatus.Text = "Share Folder: " + sharePath;
+                }
+            }
+        }
+
+        #endregion
+
+        #region Settings Functions
+
+        private void loadSettings()
+        {
+            isLoadingSettings = true;
+
+            if (getSetting("SharePath") != "") sharePath = getSetting("SharePath");
+            tsslblStatus.Text = "Share Folder: " + sharePath;
+
+            if (getSetting("ServerPort") != "") serverPort = int.Parse(getSetting("ServerPort"));
+            tstbPort.Text = serverPort.ToString();
+
+            if (getSetting("EnableLog") == "1") { logEnabled = true; } else { logEnabled = false; }
+            tsbEnableLog.Checked = logEnabled;
+
+            if (getSetting("AutoScroll") == "1") { autoScrollLog = true; } else { autoScrollLog = false; }
+            tsbAutoScroll.Checked = autoScrollLog;
+
+            if (getSetting("LogCritical") == "1") { logLvlCritical = true; } else { logLvlCritical = false; }
+            tsbLogCritical.Checked = logLvlCritical;
+
+            if (getSetting("LogDebug") == "1") { logLvlDebug = true; } else { logLvlDebug = false; }
+            tsbLogDebug.Checked = logLvlDebug;
+
+            if (getSetting("LogError") == "1") { logLvlError = true; } else { logLvlError = false; }
+            tsbLogError.Checked = logLvlError;
+
+            if (getSetting("LogInfo") == "1") { logLvlInfo = true; } else { logLvlInfo = false; }
+            tsbLogInfo.Checked = logLvlInfo;
+
+            if (getSetting("LogTrace") == "1") { logLvlTrace = true; } else { logLvlTrace = false; }
+            tsbLogTrace.Checked = logLvlTrace;
+
+            if (getSetting("LogVerbose") == "1") { logLvlVerbose = true; } else { logLvlVerbose = false; }
+            tsbLogVerbose.Checked = logLvlVerbose;
+
+            if (getSetting("LogWarn") == "1") { logLvlWarn = true; } else { logLvlWarn = false; }
+            tsbLogWarn.Checked = logLvlWarn;
+
+            isLoadingSettings = false;
+        }
+
+        private void saveSettings()
+        {
+            if (isLoadingSettings) return;
+
+            setSetting("SharePath", sharePath);
+            setSetting("ServerPort", serverPort.ToString());
+            setSetting("EnableLog", logEnabled ? "1" : "0");
+            setSetting("AutoScroll", autoScrollLog ? "1" : "0");
+            setSetting("LogCritical", logLvlCritical ? "1" : "0");
+            setSetting("LogDebug", logLvlDebug ? "1" : "0");
+            setSetting("LogError", logLvlError ? "1" : "0");
+            setSetting("LogInfo", logLvlInfo ? "1" : "0");
+            setSetting("LogTrace", logLvlTrace ? "1" : "0");
+            setSetting("LogVerbose", logLvlVerbose ? "1" : "0");
+            setSetting("LogWarn", logLvlWarn ? "1" : "0");
         }
 
         private string getSetting(string key)
@@ -315,7 +544,7 @@ namespace OPLServer
                 string result = appSettings[key] ?? "";
                 return result;
             }
-            catch (ConfigurationErrorsException){}
+            catch (ConfigurationErrorsException) { }
             return "";
         }
 
@@ -339,9 +568,7 @@ namespace OPLServer
             catch (ConfigurationErrorsException){}
         }
 
-        private void tsbSettingChanged_CheckedChanged(object sender, EventArgs e)
-        {
-            saveSettings();
-        }
+        #endregion
+
     }
 }

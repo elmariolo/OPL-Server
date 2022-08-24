@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lstvwLog = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsbToTray = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbEnableLog = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbLogFilter = new System.Windows.Forms.ToolStripSplitButton();
@@ -51,27 +54,33 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbClearLog = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbSelectFolder = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbAbout = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tstbPort = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tsslblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // listView1
+            // lstvwLog
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lstvwLog.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Location = new System.Drawing.Point(0, 25);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(890, 307);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.lstvwLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstvwLog.Location = new System.Drawing.Point(0, 25);
+            this.lstvwLog.Name = "lstvwLog";
+            this.lstvwLog.Size = new System.Drawing.Size(1017, 285);
+            this.lstvwLog.TabIndex = 2;
+            this.lstvwLog.UseCompatibleStateImageBehavior = false;
+            this.lstvwLog.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -92,6 +101,8 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbToTray,
+            this.toolStripSeparator6,
             this.tsbEnableLog,
             this.toolStripSeparator2,
             this.tsbLogFilter,
@@ -101,15 +112,35 @@
             this.toolStripSeparator3,
             this.tsbClearLog,
             this.toolStripSeparator4,
+            this.tsbSelectFolder,
+            this.toolStripSeparator7,
             this.tsbAbout,
             this.toolStripSeparator5,
             this.tstbPort,
             this.toolStripLabel1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(890, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1017, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tsbToTray
+            // 
+            this.tsbToTray.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbToTray.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbToTray.Image = ((System.Drawing.Image)(resources.GetObject("tsbToTray.Image")));
+            this.tsbToTray.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbToTray.Name = "tsbToTray";
+            this.tsbToTray.Size = new System.Drawing.Size(23, 22);
+            this.tsbToTray.Text = "Minimize to System Tray";
+            this.tsbToTray.ToolTipText = "Minimize to System Tray";
+            this.tsbToTray.Click += new System.EventHandler(this.tsbToTray_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
             // 
             // tsbEnableLog
             // 
@@ -152,7 +183,7 @@
             this.tsbLogInfo.Name = "tsbLogInfo";
             this.tsbLogInfo.Size = new System.Drawing.Size(137, 22);
             this.tsbLogInfo.Text = "Information";
-            this.tsbLogInfo.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
+            this.tsbLogInfo.CheckedChanged += new System.EventHandler(this.tsbLogInfo_CheckedChanged);
             // 
             // tsbLogWarn
             // 
@@ -162,7 +193,7 @@
             this.tsbLogWarn.Name = "tsbLogWarn";
             this.tsbLogWarn.Size = new System.Drawing.Size(137, 22);
             this.tsbLogWarn.Text = "Warning";
-            this.tsbLogWarn.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
+            this.tsbLogWarn.CheckedChanged += new System.EventHandler(this.tsbLogWarn_CheckedChanged);
             // 
             // tsbLogError
             // 
@@ -172,7 +203,7 @@
             this.tsbLogError.Name = "tsbLogError";
             this.tsbLogError.Size = new System.Drawing.Size(137, 22);
             this.tsbLogError.Text = "Error";
-            this.tsbLogError.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
+            this.tsbLogError.CheckedChanged += new System.EventHandler(this.tsbLogError_CheckedChanged);
             // 
             // tsbLogCritical
             // 
@@ -182,7 +213,7 @@
             this.tsbLogCritical.Name = "tsbLogCritical";
             this.tsbLogCritical.Size = new System.Drawing.Size(137, 22);
             this.tsbLogCritical.Text = "Critical";
-            this.tsbLogCritical.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
+            this.tsbLogCritical.CheckedChanged += new System.EventHandler(this.tsbLogCritical_CheckedChanged);
             // 
             // tsbLogTrace
             // 
@@ -192,7 +223,7 @@
             this.tsbLogTrace.Name = "tsbLogTrace";
             this.tsbLogTrace.Size = new System.Drawing.Size(137, 22);
             this.tsbLogTrace.Text = "Trace";
-            this.tsbLogTrace.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
+            this.tsbLogTrace.CheckedChanged += new System.EventHandler(this.tsbLogTrace_CheckedChanged);
             // 
             // tsbLogDebug
             // 
@@ -200,7 +231,7 @@
             this.tsbLogDebug.Name = "tsbLogDebug";
             this.tsbLogDebug.Size = new System.Drawing.Size(137, 22);
             this.tsbLogDebug.Text = "Debug";
-            this.tsbLogDebug.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
+            this.tsbLogDebug.CheckedChanged += new System.EventHandler(this.tsbLogDebug_CheckedChanged);
             // 
             // tsbLogVerbose
             // 
@@ -208,7 +239,7 @@
             this.tsbLogVerbose.Name = "tsbLogVerbose";
             this.tsbLogVerbose.Size = new System.Drawing.Size(137, 22);
             this.tsbLogVerbose.Text = "Verbose";
-            this.tsbLogVerbose.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
+            this.tsbLogVerbose.CheckedChanged += new System.EventHandler(this.tsbLogVerbose_CheckedChanged);
             // 
             // toolStripSeparator1
             // 
@@ -223,7 +254,7 @@
             this.tsbAutoScroll.Name = "tsbAutoScroll";
             this.tsbAutoScroll.Size = new System.Drawing.Size(110, 22);
             this.tsbAutoScroll.Text = "Log Auto-Scroll";
-            this.tsbAutoScroll.CheckedChanged += new System.EventHandler(this.tsbSettingChanged_CheckedChanged);
+            this.tsbAutoScroll.CheckStateChanged += new System.EventHandler(this.tsbAutoScroll_CheckStateChanged);
             // 
             // tsbServerState
             // 
@@ -255,6 +286,20 @@
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
+            // tsbSelectFolder
+            // 
+            this.tsbSelectFolder.Image = ((System.Drawing.Image)(resources.GetObject("tsbSelectFolder.Image")));
+            this.tsbSelectFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSelectFolder.Name = "tsbSelectFolder";
+            this.tsbSelectFolder.Size = new System.Drawing.Size(94, 22);
+            this.tsbSelectFolder.Text = "Select Folder";
+            this.tsbSelectFolder.Click += new System.EventHandler(this.tsbSelectFolder_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
+            // 
             // tsbAbout
             // 
             this.tsbAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -263,7 +308,7 @@
             this.tsbAbout.Name = "tsbAbout";
             this.tsbAbout.Size = new System.Drawing.Size(44, 22);
             this.tsbAbout.Text = "About";
-            this.tsbAbout.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.tsbAbout.Click += new System.EventHandler(this.tsbAbout_Click);
             // 
             // toolStripSeparator5
             // 
@@ -289,13 +334,36 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(32, 22);
             this.toolStripLabel1.Text = "Port:";
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.BalloonTipTitle = "OPL Server by MaRioLo";
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "OPL Server by MaRioLo";
+            this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslblStatus});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 310);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1017, 22);
+            this.statusStrip1.TabIndex = 4;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // tsslblStatus
+            // 
+            this.tsslblStatus.Name = "tsslblStatus";
+            this.tsslblStatus.Size = new System.Drawing.Size(0, 17);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(890, 332);
-            this.Controls.Add(this.listView1);
+            this.ClientSize = new System.Drawing.Size(1017, 332);
+            this.Controls.Add(this.lstvwLog);
             this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "OPL Server by MaRioLo";
@@ -304,6 +372,8 @@
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -311,7 +381,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lstvwLog;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
@@ -337,6 +407,13 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripTextBox tstbPort;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ToolStripButton tsbToTray;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripButton tsbSelectFolder;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel tsslblStatus;
     }
 }
 

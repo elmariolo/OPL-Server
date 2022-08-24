@@ -16,3 +16,12 @@ D:\Visual Studio 2012\Projects\OPL_Server\SMBLibrary.Win32\bin\Release\Utilities
 D:\Visual Studio 2012\Projects\OPL_Server\SMBLibrary.Win32\obj\Release\SMBLibrary.Win32.VS2005.csprojResolveAssemblyReference.cache
 D:\Visual Studio 2012\Projects\OPL_Server\SMBLibrary.Win32\obj\Release\SMBLibrary.Win32.dll
 D:\Visual Studio 2012\Projects\OPL_Server\SMBLibrary.Win32\obj\Release\SMBLibrary.Win32.pdb
+D:\GitHub\OPL-Server\OPL_Server\SMBLibrary.Win32\bin\Release\SMBLibrary.Win32.dll
+D:\GitHub\OPL-Server\OPL_Server\SMBLibrary.Win32\bin\Release\SMBLibrary.Win32.pdb
+D:\GitHub\OPL-Server\OPL_Server\SMBLibrary.Win32\bin\Release\SMBLibrary.dll
+D:\GitHub\OPL-Server\OPL_Server\SMBLibrary.Win32\bin\Release\Utilities.dll
+D:\GitHub\OPL-Server\OPL_Server\SMBLibrary.Win32\bin\Release\SMBLibrary.pdb
+D:\GitHub\OPL-Server\OPL_Server\SMBLibrary.Win32\bin\Release\Utilities.pdb
+D:\GitHub\OPL-Server\OPL_Server\SMBLibrary.Win32\obj\Release\SMBLibrary.Win32.VS2005.csprojResolveAssemblyReference.cache
+D:\GitHub\OPL-Server\OPL_Server\SMBLibrary.Win32\obj\Release\SMBLibrary.Win32.dll
+D:\GitHub\OPL-Server\OPL_Server\SMBLibrary.Win32\obj\Release\SMBLibrary.Win32.pdb

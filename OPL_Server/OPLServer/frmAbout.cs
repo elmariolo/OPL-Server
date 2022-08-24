@@ -35,5 +35,11 @@ namespace OPLServer
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(@"https://www.paypal.com/donate/?hosted_button_id=YZRV9W2KU8D6U");
+            this.Close();
+        }
     }
 }
