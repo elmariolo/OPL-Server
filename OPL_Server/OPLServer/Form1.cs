@@ -45,7 +45,8 @@ namespace OPLServer
         public bool logLvlTrace = true;
         public bool logLvlVerbose = false;
         public bool logLvlWarn = true;
-        
+        public bool autoStart = false;
+
         #endregion
 
         #region Form Methods and GUI
@@ -90,6 +91,8 @@ namespace OPLServer
             }
 
             enableLog(logEnabled);
+            tsbServerState.Checked = autoStart;
+
         }
 
         private bool existArg(string arg, string[] args)
@@ -516,6 +519,8 @@ namespace OPLServer
             if (getSetting("LogWarn") == "1") { logLvlWarn = true; } else { logLvlWarn = false; }
             tsbLogWarn.Checked = logLvlWarn;
 
+            if (getSetting("AutoStart") == "1") { autoStart = true; } else { autoStart = false; }            
+
             isLoadingSettings = false;
         }
 
@@ -534,6 +539,7 @@ namespace OPLServer
             setSetting("LogTrace", logLvlTrace ? "1" : "0");
             setSetting("LogVerbose", logLvlVerbose ? "1" : "0");
             setSetting("LogWarn", logLvlWarn ? "1" : "0");
+            setSetting("AutoStart", autoStart ? "1" : "0");
         }
 
         private string getSetting(string key)
