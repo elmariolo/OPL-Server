@@ -18,7 +18,6 @@ namespace OPLServer
         #region SMBServer variables
 
         private SMBServer m_server;
-        private IPAddress serverAddress = IPAddress.Any;
         private SMBTransportType transportType = SMBTransportType.DirectTCPTransport;
         private NTLMAuthenticationProviderBase authenticationMechanism;
         private UserCollection users = new UserCollection();
@@ -36,6 +35,7 @@ namespace OPLServer
         public bool silentMode = false;
         public string sharePath = AppPath + "PS2";
         public int serverPort = 1024;
+        public IPAddress serverAddress = IPAddress.Any;
         public bool logEnabled = true;
         public bool autoScrollLog = false;
         public bool logLvlCritical = true;
@@ -343,6 +343,7 @@ namespace OPLServer
                     tsbServerState.Checked = false;
                     tsbServerState.Image = Properties.Resources.start;
                     tsbServerState.Text = "Server is stopped (press to start)";
+                    tstbAddr.Enabled = true;
                     tstbPort.Enabled = true;
                     tsbSelectFolder.Enabled = true;
                     MessageBox.Show(ex.Message, "Error trying to start server");
@@ -351,6 +352,7 @@ namespace OPLServer
                 
                 tsbServerState.Image = Properties.Resources.stop;
                 tsbServerState.Text = "Server is running (press to stop)";
+                tstbAddr.Enabled = false;
                 tstbPort.Enabled = false;
                 tsbSelectFolder.Enabled = false;
             }
@@ -359,6 +361,7 @@ namespace OPLServer
                 serverStop();
                 tsbServerState.Image = Properties.Resources.start;
                 tsbServerState.Text = "Server is stopped (press to start)";
+                tstbAddr.Enabled = true;
                 tstbPort.Enabled = true;
                 tsbSelectFolder.Enabled = true;
             }
@@ -402,6 +405,24 @@ namespace OPLServer
                 MessageBox.Show("The server port has to be a number between 1 and 65535", "Server port range", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 tstbPort.Text = "1024";
                 tstbPort.Focus();
+            }
+        }
+
+        private void tstbAddr_Leave(object sender, EventArgs e)
+        {
+            IPAddress finaladdr;
+
+            if (IPAddress.TryParse(tstbAddr.Text, out finaladdr))
+            {
+                tstbAddr.Text = finaladdr.ToString();
+                serverAddress = finaladdr;
+                saveSettings();
+            }
+            else
+            {
+                MessageBox.Show("The server address must be formatted properly", "Server address value", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                tstbAddr.Text = "0.0.0.0";
+                tstbAddr.Focus();
             }
         }
 
@@ -489,6 +510,9 @@ namespace OPLServer
             if (getSetting("ServerPort") != "") serverPort = int.Parse(getSetting("ServerPort"));
             tstbPort.Text = serverPort.ToString();
 
+            if (getSetting("ServerAddr") != "") serverAddress = IPAddress.Parse(getSetting("ServerAddr"));
+            tstbAddr.Text = serverAddress.ToString();
+
             if (getSetting("EnableLog") == "1") { logEnabled = true; } else { logEnabled = false; }
             tsbEnableLog.Checked = logEnabled;
 
@@ -525,6 +549,7 @@ namespace OPLServer
 
             setSetting("SharePath", sharePath);
             setSetting("ServerPort", serverPort.ToString());
+            setSetting("ServerAddr", serverAddress.ToString());
             setSetting("EnableLog", logEnabled ? "1" : "0");
             setSetting("AutoScroll", autoScrollLog ? "1" : "0");
             setSetting("LogCritical", logLvlCritical ? "1" : "0");
